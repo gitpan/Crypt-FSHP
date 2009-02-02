@@ -15,7 +15,7 @@ use vars qw(@ISA @EXPORT $VERSION);
 require Exporter;
 @ISA = qw(Exporter);
 @EXPORT = qw(fshp_crypt fshp_check);
-$VERSION = '0.2.1';
+$VERSION = '0.2.2';
 
 our $FSHP_META_FMTSTR = "{FSHP%d|%d|%d}%s";
 our $FSHP_REGEX = qr/^\{FSHP(\d+)\|(\d+)\|(\d+)\}([\d\w\+\/=]+)$/;
@@ -31,11 +31,11 @@ sub fshp_crypt ($;$$$$) { &crypt; }
 sub fshp_check ($$) { &check; }
 
 sub crypt ($;$$$$)
-{	
+{
 	my ($passwd, $salt, $saltlen, $rounds, $variant) = @_;
 
-    # Passwd undefined? Not using strict or just trying to abuse.
-    defined($passwd) || croak('Mandatory argument $passwd can not be undefined');
+	# Passwd undefined? Not using strict or just trying to abuse.
+	defined($passwd) || croak('Mandatory argument $passwd can not be undefined');
     
 	# Populate with default values if undef.
 	defined($saltlen)	|| ($saltlen = 8);
